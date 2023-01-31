@@ -4,6 +4,12 @@ let passRenewalInterval = setInterval(function(){
         $("#body-content > div > div:nth-child(2)").prepend(fastTrackButton);
         clearInterval(passRenewalInterval);
     }
+    else if(window.location.search.includes("pft=true")){
+        callFRAPI("/api/CheckoutApi/ProductConfigurationComplete?_="+Date.now()).then((configData) => {
+             window.location.pathname = "/cart/address-and-payment.aspx";
+        });
+        clearInterval(passRenewalInterval);
+     }
 }, 100)
 
 
